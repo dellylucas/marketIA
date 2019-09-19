@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"marketIA/models"
+	"marketIA/utils"
 	"strconv"
 
 	"github.com/astaxie/beego"
@@ -20,7 +21,7 @@ type CategoriesController struct {
 func (o *CategoriesController) Get() {
 	ob := models.GetAllCategories()
 
-	o.Data["json"] = ob
+	o.Data[utils.TypeMessage] = ob
 
 	o.ServeJSON()
 }
@@ -36,7 +37,7 @@ func (o *CategoriesController) Post() {
 	var ob models.Categorias
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 	models.InsertCategories(&ob)
-	o.Data["json"] = "insert success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }
 
@@ -54,9 +55,9 @@ func (o *CategoriesController) Put() {
 	id, _ := strconv.Atoi(objectId)
 	err := models.UpdateCategories(id, ob)
 	if err != nil {
-		o.Data["json"] = err.Error()
+		o.Data[utils.TypeMessage] = err.Error()
 	} else {
-		o.Data["json"] = "update success!"
+		o.Data[utils.TypeMessage] = utils.MessageOK
 	}
 	o.ServeJSON()
 }
@@ -71,6 +72,6 @@ func (o *CategoriesController) Delete() {
 	catID := o.Ctx.Input.Param(":catID")
 	id, _ := strconv.Atoi(catID)
 	models.DeleteCategories(id)
-	o.Data["json"] = "delete success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }

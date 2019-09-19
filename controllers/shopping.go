@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"marketIA/models"
+	"marketIA/utils"
 	"strconv"
 
 	"github.com/astaxie/beego"
@@ -20,7 +21,7 @@ type ShoppingController struct {
 func (o *ShoppingController) Get() {
 	ob := models.GetAllShopping()
 
-	o.Data["json"] = ob
+	o.Data[utils.TypeMessage] = ob
 
 	o.ServeJSON()
 }
@@ -36,7 +37,7 @@ func (o *ShoppingController) Post() {
 	var ob models.Compras
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 	models.InsertShopping(&ob)
-	o.Data["json"] = "insert success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }
 
@@ -51,9 +52,9 @@ func (o *ShoppingController) Put() {
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 	err := models.UpdateShopping(ob)
 	if err != nil {
-		o.Data["json"] = err.Error()
+		o.Data[utils.TypeMessage] = err.Error()
 	} else {
-		o.Data["json"] = "update success!"
+		o.Data[utils.TypeMessage] = utils.MessageOK
 	}
 	o.ServeJSON()
 }
@@ -71,6 +72,6 @@ func (o *ShoppingController) Delete() {
 	idUser, _ := strconv.Atoi(userID)
 	idService, _ := strconv.Atoi(serviceID)
 	models.DeleteShopping(idUser, idService)
-	o.Data["json"] = "delete success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }

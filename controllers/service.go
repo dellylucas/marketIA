@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"marketIA/models"
+	"marketIA/utils"
 	"strconv"
 
 	"github.com/astaxie/beego"
@@ -20,7 +21,7 @@ type ServiceController struct {
 func (o *ServiceController) Get() {
 	ob := models.GetAllService()
 
-	o.Data["json"] = ob
+	o.Data[utils.TypeMessage] = ob
 
 	o.ServeJSON()
 }
@@ -36,7 +37,7 @@ func (o *ServiceController) Post() {
 	var ob models.Servicio
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 	models.InsertService(&ob)
-	o.Data["json"] = "insert success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }
 
@@ -54,9 +55,9 @@ func (o *ServiceController) Put() {
 	id, _ := strconv.Atoi(objectId)
 	err := models.UpdateService(id, ob)
 	if err != nil {
-		o.Data["json"] = err.Error()
+		o.Data[utils.TypeMessage] = err.Error()
 	} else {
-		o.Data["json"] = "update success!"
+		o.Data[utils.TypeMessage] = utils.MessageOK
 	}
 	o.ServeJSON()
 }
@@ -71,6 +72,6 @@ func (o *ServiceController) Delete() {
 	serviceID := o.Ctx.Input.Param(":serviceID")
 	id, _ := strconv.Atoi(serviceID)
 	models.DeleteService(id)
-	o.Data["json"] = "delete success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }

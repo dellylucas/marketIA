@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"marketIA/models"
+	"marketIA/utils"
 	"strconv"
 
 	"github.com/astaxie/beego"
@@ -20,7 +21,7 @@ type UserController struct {
 func (o *UserController) Get() {
 	ob := models.GetAllUser()
 
-	o.Data["json"] = ob
+	o.Data[utils.TypeMessage] = ob
 
 	o.ServeJSON()
 }
@@ -37,9 +38,9 @@ func (o *UserController) Post() {
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 	err := models.InsertUser(&ob)
 	if err != nil {
-		o.Data["json"] = err
+		o.Data[utils.TypeMessage] = err
 	} else {
-		o.Data["json"] = "ok"
+		o.Data[utils.TypeMessage] = utils.MessageOK
 	}
 	o.ServeJSON()
 }
@@ -58,9 +59,9 @@ func (o *UserController) Put() {
 	id, _ := strconv.Atoi(objectId)
 	err := models.UpdateUser(id, ob)
 	if err != nil {
-		o.Data["json"] = err.Error()
+		o.Data[utils.TypeMessage] = err.Error()
 	} else {
-		o.Data["json"] = "update success!"
+		o.Data[utils.TypeMessage] = utils.MessageOK
 	}
 	o.ServeJSON()
 }
@@ -75,7 +76,7 @@ func (o *UserController) Delete() {
 	userID := o.Ctx.Input.Param(":userID")
 	id, _ := strconv.Atoi(userID)
 	models.DeleteUser(id)
-	o.Data["json"] = "delete success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }
 
@@ -91,9 +92,9 @@ func (o *UserController) Login() {
 	json.Unmarshal(o.Ctx.Input.RequestBody, &user)
 	err := models.ValidateLogin(user)
 	if err != nil {
-		o.Data["json"] = false
+		o.Data[utils.TypeMessage] = false
 	} else {
-		o.Data["json"] = true
+		o.Data[utils.TypeMessage] = true
 	}
 	o.ServeJSON()
 }
