@@ -2,37 +2,27 @@ package db
 
 import (
 	"fmt"
+	"marketIA/utils"
 
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
-const (
-	dbAlias       = "default"
-	mysqlUser     = "admin"        //"root"
-	mysqlPassword = "holamundo123" //"Delly12345678"
-	mysqlHost     = "localhost"
-	mysqlPort     = 3306
-	mysqlDatabase = "MARKET_IA"
-	mysqlCharset  = "utf8"
-)
-
 var (
 	mysqlCon = fmt.Sprintf(
 		"%s:%s@tcp(%s:%d)/%s?charset=%s",
-		mysqlUser,
-		mysqlPassword,
-		mysqlHost,
-		mysqlPort,
-		mysqlDatabase,
-		mysqlCharset,
+		utils.USER,
+		utils.PASS,
+		utils.HOST,
+		utils.PORT,
+		utils.NAMEDB,
+		utils.CHARSET,
 	)
 )
 
 func init() {
-	orm.RegisterDriver("mysql", orm.DRMySQL)
-
-	orm.RegisterDataBase(dbAlias, "mysql", mysqlCon)
+	orm.RegisterDriver(utils.ENGINE, orm.DRMySQL)
+	orm.RegisterDataBase(utils.DBALIAS, utils.ENGINE, mysqlCon)
 }
 
 //GetSession - conexion de Base de Datos
@@ -40,12 +30,12 @@ func GetSession() orm.Ormer {
 
 	/*force := true   // Drop table and re-create.
 	verbose := true // Print log
-	if err := orm.RunSyncdb(dbAlias, force, verbose); err != nil {
+	if err := orm.RunSyncdb(DBALIAS, force, verbose); err != nil {
 		log.Println(err)
 	}*/
 
 	session := orm.NewOrm()
-	session.Using("MARKET_IA")
+	session.Using(utils.NAMEDB)
 
 	return session
 }

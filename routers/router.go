@@ -9,13 +9,14 @@ package routers
 
 import (
 	"marketIA/controllers"
+	"marketIA/utils"
 
 	"github.com/astaxie/beego"
 )
 
 func init() {
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/user",
+		beego.NSNamespace(utils.UserPath,
 			beego.NSInclude(
 				&controllers.UserController{},
 			),

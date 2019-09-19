@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"marketIA/models"
+	"marketIA/utils"
 	"strconv"
 
 	"github.com/astaxie/beego"
@@ -20,7 +21,7 @@ type PayMethodsController struct {
 func (o *PayMethodsController) Get() {
 	ob := models.GetAllPayMethods()
 
-	o.Data["json"] = ob
+	o.Data[utils.TypeMessage] = ob
 
 	o.ServeJSON()
 }
@@ -36,7 +37,7 @@ func (o *PayMethodsController) Post() {
 	var ob models.Metodos_pago
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 	models.InsertPayMethods(&ob)
-	o.Data["json"] = "insert success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }
 
@@ -54,9 +55,9 @@ func (o *PayMethodsController) Put() {
 	id, _ := strconv.Atoi(objectId)
 	err := models.UpdatePayMethods(id, ob)
 	if err != nil {
-		o.Data["json"] = err.Error()
+		o.Data[utils.TypeMessage] = err.Error()
 	} else {
-		o.Data["json"] = "update success!"
+		o.Data[utils.TypeMessage] = utils.MessageOK
 	}
 	o.ServeJSON()
 }
@@ -71,6 +72,6 @@ func (o *PayMethodsController) Delete() {
 	payID := o.Ctx.Input.Param(":payID")
 	id, _ := strconv.Atoi(payID)
 	models.DeletePayMethods(id)
-	o.Data["json"] = "delete success!"
+	o.Data[utils.TypeMessage] = utils.MessageOK
 	o.ServeJSON()
 }
