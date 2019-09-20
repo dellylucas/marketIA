@@ -277,11 +277,22 @@ if($RespuestaApiData == "insert success!")
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
+
+<?php
+                  $data = file_get_contents("http://52.229.9.122:8085/v1/user");
+                  $products = json_decode($data, true);
+ 
+                  foreach ($products as $product) {
+                  echo '<pre>';
+                  print_r($product);
+                  echo '</pre>';
+}
+?>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
+                      <th>Cedula</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th></th>
                       <th>Start date</th>
                       <th>Salary</th>
                     </tr>
