@@ -1,3 +1,31 @@
+<?php
+
+$login=1;
+
+if($login==null)
+{
+
+echo "login es null". $login;
+
+}
+
+if($login==1)
+
+{  ?> 
+<!DOCTYPE html>
+<html lang="en">
+<script>
+$('#badlog').modal('show');
+</script> 
+</html>
+
+
+<?php
+echo $login;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,12 +67,12 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user" method="POST" action="tables.html">
+                  <form class="user" method="POST" action="tables.php">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="text" class="form-control form-control-user" name="Usuario" aria-describedby="emailHelp" placeholder="Enter User name" required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" name="Contraseña" placeholder="Password" required>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -52,8 +80,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="tables.html" class="btn btn-primary btn-user btn-block">
-                      Login </a>
+                    <input type="submit" value="Login" class="btn btn-primary btn-user btn-block">
                   </form>
               
                   <div class="text-center">
@@ -83,6 +110,27 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="badlog" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">please check the user information</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="">Accept</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 </body>
 
