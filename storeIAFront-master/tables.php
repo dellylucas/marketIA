@@ -384,7 +384,7 @@ else
 {
 
   
-  header("Location: http://localhost/storeIAFront/index.php");
+  header("Location: http://52.229.9.122");
 
 }
 
