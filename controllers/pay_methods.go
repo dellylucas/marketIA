@@ -9,13 +9,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-//Operations about object
+//operaciones sobre metodos de pagos
 type PayMethodsController struct {
 	beego.Controller
 }
 
 // @Title Get
-// @Description find object by objectid
+// @Description obtiene todos los metodos de pagos
 // @Success 200  models.Metodos_pago
 // @router / [get]
 func (o *PayMethodsController) Get() {
@@ -28,7 +28,7 @@ func (o *PayMethodsController) Get() {
 
 //Post - insert
 // @Title Post
-// @Description create Metodos_pago
+// @Description crea un metodo de pago
 // @Param	body		body 	models.Metodos_pago	true		"The object content"
 // @Success 200 models.Metodos_pago
 // @Failure 403 body is empty
@@ -42,7 +42,7 @@ func (o *PayMethodsController) Post() {
 }
 
 // @Title Update
-// @Description update the object
+// @Description actualiza un metodo de pago
 // @Param	objectId		path 	string	true		"The objectid you want to update"
 // @Param	body		body 	models.Metodos_pago	true		"The body"
 // @Success 200 {object} models.Metodos_pago
@@ -63,7 +63,7 @@ func (o *PayMethodsController) Put() {
 }
 
 // @Title Delete
-// @Description delete the object
+// @Description elimina un metodo de pago
 // @Param	payID		path 	string	true		"The objectId you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 payID is empty

@@ -1,0 +1,544 @@
+swagger: "2.0"
+info:
+  title: API Tienda IA
+  description: 'Documentacion del Api para tiendas de inteligencia artificial; estos
+    servicios se deben consumir desde la URL: http://52.229.9.122:8085/v1'
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: dellylucas@hotmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /categories/:
+    get:
+      tags:
+      - categories
+      description: obtiene todas las categorias
+      operationId: CategoriesController.Get
+      responses:
+        "200":
+          description: models.Categorias
+    post:
+      tags:
+      - categories
+      description: crea una categoria
+      operationId: CategoriesController.Post
+      parameters:
+      - in: body
+        name: body
+        description: The object content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Categorias'
+      responses:
+        "200":
+          description: models.Categorias
+        "403":
+          description: body is empty
+  /categories/{catID}:
+    delete:
+      tags:
+      - categories
+      description: elimina una categoria
+      operationId: CategoriesController.Delete
+      parameters:
+      - in: path
+        name: catID
+        description: The objectId you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: catID is empty
+  /categories/{objectId}:
+    put:
+      tags:
+      - categories
+      description: actualiza una categoria
+      operationId: CategoriesController.Update
+      parameters:
+      - in: path
+        name: objectId
+        description: The objectid you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: The body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Categorias'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Categorias'
+        "403":
+          description: :objectId is empty
+  /payMet/:
+    get:
+      tags:
+      - payMet
+      description: obtiene todos los metodos de pagos
+      operationId: PayMethodsController.Get
+      responses:
+        "200":
+          description: models.Metodos_pago
+    post:
+      tags:
+      - payMet
+      description: crea un metodo de pago
+      operationId: PayMethodsController.Post
+      parameters:
+      - in: body
+        name: body
+        description: The object content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Metodos_pago'
+      responses:
+        "200":
+          description: models.Metodos_pago
+        "403":
+          description: body is empty
+  /payMet/{objectId}:
+    put:
+      tags:
+      - payMet
+      description: actualiza un metodo de pago
+      operationId: PayMethodsController.Update
+      parameters:
+      - in: path
+        name: objectId
+        description: The objectid you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: The body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Metodos_pago'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Metodos_pago'
+        "403":
+          description: :objectId is empty
+  /payMet/{payID}:
+    delete:
+      tags:
+      - payMet
+      description: elimina un metodo de pago
+      operationId: PayMethodsController.Delete
+      parameters:
+      - in: path
+        name: payID
+        description: The objectId you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: payID is empty
+  /service/:
+    get:
+      tags:
+      - service
+      description: obtiene todos los servicios
+      operationId: ServiceController.Get
+      responses:
+        "200":
+          description: models.Servicio
+    post:
+      tags:
+      - service
+      description: crea un Servicio IA
+      operationId: ServiceController.Post
+      parameters:
+      - in: body
+        name: body
+        description: The object content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Servicio'
+      responses:
+        "200":
+          description: models.Servicio
+        "403":
+          description: body is empty
+  /service/{objectId}:
+    put:
+      tags:
+      - service
+      description: actualiza un servicio
+      operationId: ServiceController.Update
+      parameters:
+      - in: path
+        name: objectId
+        description: The objectid you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: The body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Servicio'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Servicio'
+        "403":
+          description: :objectId is empty
+  /service/{serviceID}:
+    delete:
+      tags:
+      - service
+      description: elimina un servicio
+      operationId: ServiceController.Delete
+      parameters:
+      - in: path
+        name: serviceID
+        description: The objectId you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: serviceID is empty
+  /shopping/:
+    get:
+      tags:
+      - shopping
+      description: obtiene compras
+      operationId: ShoppingController.Get
+      responses:
+        "200":
+          description: models.Compras
+    put:
+      tags:
+      - shopping
+      description: actualiza compras
+      operationId: ShoppingController.Update
+      parameters:
+      - in: body
+        name: body
+        description: The body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Compras'
+      responses:
+        "200":
+          description: models.Compras
+        "403":
+          description: body is empty
+    post:
+      tags:
+      - shopping
+      description: crea compras
+      operationId: ShoppingController.Post
+      parameters:
+      - in: body
+        name: body
+        description: The object content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Compras'
+      responses:
+        "200":
+          description: models.Compras
+        "403":
+          description: body is empty
+  /shopping/{serviceID}:
+    delete:
+      tags:
+      - shopping
+      description: elimina las compras
+      operationId: ShoppingController.Delete
+      parameters:
+      - in: path
+        name: userID
+        description: The userID you want to delete
+        required: true
+        type: string
+      - in: path
+        name: serviceID
+        description: The serviceID you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: serviceID is empty
+  /store/:
+    get:
+      tags:
+      - store
+      description: obtiene todas las tiendas
+      operationId: StoreController.Get
+      responses:
+        "200":
+          description: models.Tienda
+    post:
+      tags:
+      - store
+      description: crea una Tienda
+      operationId: StoreController.Post
+      parameters:
+      - in: body
+        name: body
+        description: The object content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Tienda'
+      responses:
+        "200":
+          description: models.Tienda
+        "403":
+          description: body is empty
+  /store/{objectId}:
+    put:
+      tags:
+      - store
+      description: actualiza una tienda
+      operationId: StoreController.Update
+      parameters:
+      - in: path
+        name: objectId
+        description: The objectid you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: The body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Tienda'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Tienda'
+        "403":
+          description: :objectId is empty
+  /store/{storeID}:
+    delete:
+      tags:
+      - store
+      description: elimina una tienda
+      operationId: StoreController.Delete
+      parameters:
+      - in: path
+        name: storeID
+        description: The objectId you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: storeID is empty
+  /user/:
+    get:
+      tags:
+      - user
+      description: Obtiene todos los usuarios
+      operationId: UserController.Get
+      responses:
+        "200":
+          description: models.Usuarios
+    post:
+      tags:
+      - user
+      description: crea o inserta usuario
+      operationId: UserController.Post
+      parameters:
+      - in: body
+        name: body
+        description: The object content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Usuarios'
+      responses:
+        "200":
+          description: models.Usuarios
+        "403":
+          description: body is empty
+  /user/{objectId}:
+    put:
+      tags:
+      - user
+      description: actualiza usuario
+      operationId: UserController.Update
+      parameters:
+      - in: path
+        name: objectId
+        description: The objectid you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: The body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Usuarios'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Usuarios'
+        "403":
+          description: :objectId is empty
+  /user/{userID}:
+    delete:
+      tags:
+      - user
+      description: Elimina usuario
+      operationId: UserController.Delete
+      parameters:
+      - in: path
+        name: userID
+        description: The objectId you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: userID is empty
+  /user/login:
+    post:
+      tags:
+      - user
+      description: realiza la validacion del ingreso de un usuario o tienda
+      operationId: UserController.Post
+      parameters:
+      - in: body
+        name: body
+        description: Contiene el usuario y contraseña digitado
+        required: true
+        schema:
+          $ref: '#/definitions/models.Usuarios'
+      responses:
+        "200":
+          description: '{Boolean} true o false'
+        "403":
+          description: body is empty
+definitions:
+  models.Categorias:
+    title: Categorias
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      nombre:
+        type: string
+  models.Compras:
+    title: Compras
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      id_servicio:
+        type: integer
+        format: int64
+      id_usuario:
+        type: integer
+        format: int64
+  models.Metodos_pago:
+    title: Metodos_pago
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      nombre:
+        type: string
+  models.Servicio:
+    title: Servicio
+    type: object
+    properties:
+      descripcion:
+        type: string
+      id:
+        type: integer
+        format: int64
+      id_tienda:
+        type: integer
+        format: int64
+      nombre:
+        type: string
+      precio:
+        type: integer
+        format: int64
+  models.Tienda:
+    title: Tienda
+    type: object
+    properties:
+      clave:
+        type: string
+      correo:
+        type: string
+      descripcion:
+        type: string
+      id:
+        type: integer
+        format: int64
+      id_categoria:
+        type: integer
+        format: int64
+      nit:
+        type: string
+      nombre:
+        type: string
+  models.Usuarios:
+    title: Usuarios
+    type: object
+    properties:
+      apellido:
+        type: string
+      celular:
+        type: string
+      clave:
+        type: string
+      correo:
+        type: string
+      documento:
+        type: string
+      id:
+        type: integer
+        format: int64
+      nombre:
+        type: string
+tags:
+- name: user
+  description: |
+    operaciones sobre usuarios
+- name: categories
+  description: |
+    operaciones sobre las categorias de las tiendas de IA
+- name: store
+  description: |
+    operaciones sobre tiendas
+- name: payMet
+  description: |
+    operaciones sobre metodos de pagos
+- name: service
+  description: |2
+     operaciones sobre servicios de tiendas
+- name: shopping
+  description: |
+    operaciones sobre compras
