@@ -9,13 +9,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// Operations about object
+//  operaciones sobre servicios de tiendas
 type ServiceController struct {
 	beego.Controller
 }
 
 // @Title Get
-// @Description find object by objectid
+// @Description obtiene todos los servicios
 // @Success 200  models.Servicio
 // @router / [get]
 func (o *ServiceController) Get() {
@@ -28,7 +28,7 @@ func (o *ServiceController) Get() {
 
 //Post - insert
 // @Title Post
-// @Description create Servicio
+// @Description crea un Servicio IA
 // @Param	body		body 	models.Servicio	true		"The object content"
 // @Success 200 models.Servicio
 // @Failure 403 body is empty
@@ -42,7 +42,7 @@ func (o *ServiceController) Post() {
 }
 
 // @Title Update
-// @Description update the object
+// @Description actualiza un servicio
 // @Param	objectId		path 	string	true		"The objectid you want to update"
 // @Param	body		body 	models.Servicio	true		"The body"
 // @Success 200 {object} models.Servicio
@@ -63,7 +63,7 @@ func (o *ServiceController) Put() {
 }
 
 // @Title Delete
-// @Description delete the object
+// @Description elimina un servicio
 // @Param	serviceID		path 	string	true		"The objectId you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 serviceID is empty

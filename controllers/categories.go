@@ -9,13 +9,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-//Operations about object
+//operaciones sobre las categorias de las tiendas de IA
 type CategoriesController struct {
 	beego.Controller
 }
 
 // @Title Get
-// @Description find object by objectid
+// @Description obtiene todas las categorias
 // @Success 200  models.Categorias
 // @router / [get]
 func (o *CategoriesController) Get() {
@@ -28,7 +28,7 @@ func (o *CategoriesController) Get() {
 
 //Post - insert
 // @Title Post
-// @Description create Categories
+// @Description crea una categoria
 // @Param	body		body 	models.Categorias	true		"The object content"
 // @Success 200 models.Categorias
 // @Failure 403 body is empty
@@ -42,7 +42,7 @@ func (o *CategoriesController) Post() {
 }
 
 // @Title Update
-// @Description update the object
+// @Description actualiza una categoria
 // @Param	objectId		path 	string	true		"The objectid you want to update"
 // @Param	body		body 	models.Categorias	true		"The body"
 // @Success 200 {object} models.Categorias
@@ -63,7 +63,7 @@ func (o *CategoriesController) Put() {
 }
 
 // @Title Delete
-// @Description delete the object
+// @Description elimina una categoria
 // @Param	catID		path 	string	true		"The objectId you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 catID is empty
