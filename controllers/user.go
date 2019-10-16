@@ -9,14 +9,14 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// Operations about object
+//operaciones sobre usuarios
 type UserController struct {
 	beego.Controller
 }
 
 // @Title Get
-// @Description find object by objectid
-// @Success 200  models.User
+// @Description Obtiene todos los usuarios
+// @Success 200  models.Usuarios
 // @router / [get]
 func (o *UserController) Get() {
 	ob := models.GetAllUser()
@@ -28,9 +28,9 @@ func (o *UserController) Get() {
 
 //Post - insert
 // @Title Post
-// @Description create Tutor
-// @Param	body		body 	models.Tutor	true		"The object content"
-// @Success 200 models.Tutor
+// @Description crea o inserta usuario
+// @Param	body		body 	models.Usuarios	true		"The object content"
+// @Success 200 models.Usuarios
 // @Failure 403 body is empty
 // @router / [post]
 func (o *UserController) Post() {
@@ -46,7 +46,7 @@ func (o *UserController) Post() {
 }
 
 // @Title Update
-// @Description update the object
+// @Description actualiza usuario
 // @Param	objectId		path 	string	true		"The objectid you want to update"
 // @Param	body		body 	models.Usuarios	true		"The body"
 // @Success 200 {object} models.Usuarios
@@ -67,7 +67,7 @@ func (o *UserController) Put() {
 }
 
 // @Title Delete
-// @Description delete the object
+// @Description Elimina usuario
 // @Param	userID		path 	string	true		"The objectId you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 userID is empty
@@ -82,11 +82,11 @@ func (o *UserController) Delete() {
 
 //Login - login
 // @Title Post
-// @Description login
-// @Param	body		body 	models.Usuarios	true		"The object content"
-// @Success 200 models.Usuarios
+// @Description realiza la validacion del ingreso de un usuario o tienda
+// @Param	body		body 	models.Usuarios	true		"Contiene el usuario y contraseña digitado"
+// @Success 200 {Boolean} true o false
 // @Failure 403 body is empty
-// @router /login/ [post]
+// @router /login [post]
 func (o *UserController) Login() {
 	var user models.Usuarios
 	json.Unmarshal(o.Ctx.Input.RequestBody, &user)

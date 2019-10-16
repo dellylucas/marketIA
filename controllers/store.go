@@ -9,13 +9,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// Operations about object
+// operaciones sobre tiendas
 type StoreController struct {
 	beego.Controller
 }
 
 // @Title Get
-// @Description find object by objectid
+// @Description obtiene todas las tiendas
 // @Success 200  models.Tienda
 // @router / [get]
 func (o *StoreController) Get() {
@@ -28,7 +28,7 @@ func (o *StoreController) Get() {
 
 //Post - insert
 // @Title Post
-// @Description create Tienda
+// @Description crea una Tienda
 // @Param	body		body 	models.Tienda	true		"The object content"
 // @Success 200 models.Tienda
 // @Failure 403 body is empty
@@ -42,7 +42,7 @@ func (o *StoreController) Post() {
 }
 
 // @Title Update
-// @Description update the object
+// @Description actualiza una tienda
 // @Param	objectId		path 	string	true		"The objectid you want to update"
 // @Param	body		body 	models.Tienda	true		"The body"
 // @Success 200 {object} models.Tienda
@@ -63,7 +63,7 @@ func (o *StoreController) Put() {
 }
 
 // @Title Delete
-// @Description delete the object
+// @Description elimina una tienda
 // @Param	storeID		path 	string	true		"The objectId you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 storeID is empty
