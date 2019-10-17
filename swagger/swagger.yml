@@ -432,7 +432,7 @@ paths:
           $ref: '#/definitions/models.Usuarios'
       responses:
         "200":
-          description: '{Boolean} true o false'
+          description: '{Boolean} models.Usuarios o false'
         "403":
           description: body is empty
 definitions:
@@ -508,6 +508,8 @@ definitions:
     title: Usuarios
     type: object
     properties:
+      admin:
+        type: boolean
       apellido:
         type: string
       celular:

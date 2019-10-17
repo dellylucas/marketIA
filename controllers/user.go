@@ -84,7 +84,7 @@ func (o *UserController) Delete() {
 // @Title Post
 // @Description realiza la validacion del ingreso de un usuario o tienda
 // @Param	body		body 	models.Usuarios	true		"Contiene el usuario y contraseña digitado"
-// @Success 200 {Boolean} true o false
+// @Success 200 {Boolean} models.Usuarios o false
 // @Failure 403 body is empty
 // @router /login [post]
 func (o *UserController) Login() {
