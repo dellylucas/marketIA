@@ -26,10 +26,29 @@ func (o *UserController) Get() {
 	o.ServeJSON()
 }
 
+// @Title GetOne
+// @Description Obtiene un usuarios por Identificador
+// @Param	objectId		path 	string	true		"El Id del objeto a actualizar"
+// @Success 200  models.Usuarios o false
+// @Failure 403 :objectId is empty
+// @router /:objectId [get]
+func (o *UserController) GetOne() {
+	objectId := o.Ctx.Input.Param(":objectId")
+
+	id, _ := strconv.Atoi(objectId)
+	ob := models.GetUser(id)
+	if ob.CORREO != "" {
+		o.Data[utils.TypeMessage] = ob
+	} else {
+		o.Data[utils.TypeMessage] = false
+	}
+	o.ServeJSON()
+}
+
 //Post - insert
 // @Title Post
 // @Description crea o inserta usuario
-// @Param	body		body 	models.Usuarios	true		"The object content"
+// @Param	body		body 	models.Usuarios	true		"El usuario a insertar"
 // @Success 200 models.Usuarios
 // @Failure 403 body is empty
 // @router / [post]
@@ -47,7 +66,7 @@ func (o *UserController) Post() {
 
 // @Title Update
 // @Description actualiza usuario
-// @Param	objectId		path 	string	true		"The objectid you want to update"
+// @Param	objectId		path 	string	true		"El usuario con sus parametros a actualizar"
 // @Param	body		body 	models.Usuarios	true		"The body"
 // @Success 200 {object} models.Usuarios
 // @Failure 403 :objectId is empty
@@ -68,7 +87,7 @@ func (o *UserController) Put() {
 
 // @Title Delete
 // @Description Elimina usuario
-// @Param	userID		path 	string	true		"The objectId you want to delete"
+// @Param	userID		path 	string	true		"El Id del usuario a eliminar"
 // @Success 200 {string} delete success!
 // @Failure 403 userID is empty
 // @router /:userID [Delete]

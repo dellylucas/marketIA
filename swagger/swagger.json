@@ -553,7 +553,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "The object content",
+                        "description": "El usuario a insertar",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/models.Usuarios"
@@ -599,6 +599,30 @@
             }
         },
         "/user/{objectId}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Obtiene un usuarios por Identificador",
+                "operationId": "UserController.GetOne",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "objectId",
+                        "description": "El Id del objeto a actualizar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Usuarios o false"
+                    },
+                    "403": {
+                        "description": ":objectId is empty"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "user"
@@ -609,7 +633,7 @@
                     {
                         "in": "path",
                         "name": "objectId",
-                        "description": "The objectid you want to update",
+                        "description": "El usuario con sus parametros a actualizar",
                         "required": true,
                         "type": "string"
                     },
@@ -647,7 +671,7 @@
                     {
                         "in": "path",
                         "name": "userID",
-                        "description": "The objectId you want to delete",
+                        "description": "El Id del usuario a eliminar",
                         "required": true,
                         "type": "string"
                     }
