@@ -46,6 +46,8 @@ echo $login;
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="css/main.css">
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -66,6 +68,9 @@ echo $login;
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                  </div>
+                  <div id="contenedor_carga">
+                  <div id="carga"></div>
                   </div>
                   <form class="user" method="POST" action="tables.php">
                     <div class="form-group">
@@ -130,7 +135,14 @@ echo $login;
     </div>
   </div>
 
-
+  <script>
+  window.onload = function(){
+    var contenedor =document.getElementById("contenedor_carga");
+      contenedor.style.visibility = "hidden";
+      contenedor.style.opacity = "0";
+  }
+  </script>
+  
 
 </body>
 

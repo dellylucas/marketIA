@@ -8,6 +8,7 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
+//Usuarios modelo de usuarios
 type Usuarios struct {
 	ID        int    `orm:"column(ID)" json:"id"`
 	NOMBRE    string `orm:"column(NOMBRE)" json:"nombre"`
@@ -16,6 +17,7 @@ type Usuarios struct {
 	DOCUMENTO string `orm:"column(DOCUMENTO)" json:"documento"`
 	CLAVE     string `orm:"column(CLAVE)" json:"clave"`
 	CORREO    string `orm:"column(CORREO)" json:"correo"`
+	ISADMIN   bool   `orm:"column(IS_ADMIN)" json:"admin"`
 }
 
 func init() {
@@ -56,10 +58,9 @@ func UpdateUser(id int, user Usuarios) (err error) {
 	return err
 }
 
-func ValidateLogin(user Usuarios) (err error) {
+func ValidateLogin(user Usuarios) (pos Usuarios) {
 	session := db.GetSession()
-	var pos Usuarios
-	err = session.QueryTable("Usuarios").Filter("CLAVE", user.CLAVE).Filter("CORREO", user.CORREO).One(&pos)
+	session.QueryTable("Usuarios").Filter("CLAVE", user.CLAVE).Filter("CORREO", user.CORREO).One(&pos)
 
-	return err
+	return pos
 }
