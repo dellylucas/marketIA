@@ -90,11 +90,11 @@ func (o *UserController) Delete() {
 func (o *UserController) Login() {
 	var user models.Usuarios
 	json.Unmarshal(o.Ctx.Input.RequestBody, &user)
-	err := models.ValidateLogin(user)
-	if err != nil {
-		o.Data[utils.TypeMessage] = false
+	user = models.ValidateLogin(user)
+	if user.CORREO != "" {
+		o.Data[utils.TypeMessage] = user
 	} else {
-		o.Data[utils.TypeMessage] = true
+		o.Data[utils.TypeMessage] = false
 	}
 	o.ServeJSON()
 }
