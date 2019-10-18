@@ -36,11 +36,11 @@ $DataUser = json_decode($data, true);
 //echo $RespuestaApiData;
 
 $Rol = $RespuestaApiData['IS_ADMIN'];
-echo $DataUser;
-$Rol = "Admin";
 
-if($RespuestaApiData == "insert success!" && $Rol == "Admin")
-{echo $Rol;
+$Rol = "Client";
+
+if($RespuestaApiData == true && $Rol == "Admin")
+{
  
 ?>
 
@@ -111,8 +111,8 @@ if($RespuestaApiData == "insert success!" && $Rol == "Admin")
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">More options:</h6>
-            <a class="collapse-item" href="registarUsuaio.php">Create a new user</a>
-            <a class="collapse-item" href="registarItem.php">Register New Item</a>
+            <a class="collapse-item" href="registerUser.php">Create a new user</a>
+            <a class="collapse-item" href="registerItem.php">Register New Item</a>
           </div>
         </div>
       </li>
@@ -339,7 +339,7 @@ if($RespuestaApiData == "insert success!" && $Rol == "Admin")
         <div class="modal-body">Select "Logout" if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="https://52.229.9.122">Logout</a>
+          <a class="btn btn-primary" href="http://52.229.9.122/index.php">Logout</a>
         </div>
       </div>
     </div>
@@ -373,7 +373,7 @@ if($RespuestaApiData == "insert success!" && $Rol == "Admin")
 else
 {
 
-  if($RespuestaApiData == "insert success!" || $Rol = "Client")
+  if($RespuestaApiData == "insert success!" && $Rol == "Client")
 { 
 ?>
 
@@ -570,7 +570,7 @@ else
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="http://52.229.9.122/index.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -673,7 +673,7 @@ else
         <div class="modal-body">Select "Logout" if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="https://52.229.9.122">Logout</a>
+          <a class="btn btn-primary" href="http://52.229.9.122/index.php">Logout</a>
         </div>
       </div>
     </div>
@@ -704,7 +704,7 @@ else
 }
 else{
   
-  header("Location: http://52.229.9.122");
+  header("http://52.229.9.122/index.php");
 
 }
 }
