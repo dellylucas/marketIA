@@ -111,7 +111,7 @@ func (o *UserController) Login() {
 	json.Unmarshal(o.Ctx.Input.RequestBody, &user)
 	user = models.ValidateLogin(user)
 	if user.CORREO != "" {
-		o.Data[utils.TypeMessage] = true
+		o.Data[utils.TypeMessage] = user
 	} else {
 		o.Data[utils.TypeMessage] = false
 	}
