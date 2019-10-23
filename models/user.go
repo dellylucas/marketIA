@@ -34,7 +34,7 @@ func InsertUser(user *Usuarios) (err error) {
 func GetUser(id int) (user Usuarios) {
 	session := db.GetSession()
 
-	session.QueryTable("Usuarios").Filter("ID", id).One(&user)
+	session.QueryTable("Usuarios").Filter("DOCUMENTO", id).One(&user)
 	return user
 }
 
