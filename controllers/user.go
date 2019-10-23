@@ -35,9 +35,9 @@ func (o *UserController) Get() {
 func (o *UserController) GetOne() {
 	objectId := o.Ctx.Input.Param(":objectId")
 
-	id, _ := strconv.Atoi(objectId)
+	id, err := strconv.Atoi(objectId)
 	ob := models.GetUser(id)
-	if ob.CORREO != "" {
+	if ob.DOCUMENTO != "" && err == nil {
 		o.Data[utils.TypeMessage] = ob
 	} else {
 		o.Data[utils.TypeMessage] = false
