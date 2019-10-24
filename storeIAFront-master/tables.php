@@ -20,8 +20,8 @@ $context = stream_context_create(array(
 ));
 
 // Send the request
-$RespuestaApi = file_get_contents('http://52.229.9.122:8085/v1/user/login', FALSE, $context);
-$data = file_get_contents("http://52.229.9.122:8085/v1/user");
+//$RespuestaApi = file_get_contents('http://52.229.9.122:8085/v1/user/login', FALSE, $context);
+//$data = file_get_contents("http://52.229.9.122:8085/v1/user");
 
 // Check for errors
 if($RespuestaApi === FALSE){
@@ -373,7 +373,7 @@ if($RespuestaApiData == "insert success!" && $Rol == "Admin")
 else
 {
 
-  if($RespuestaApiData == "insert success!" || $Rol = "Client")
+  if($RespuestaApiData == "insert success!" && $Rol == "Client")
 { 
 ?>
 
