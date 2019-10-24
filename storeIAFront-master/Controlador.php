@@ -38,7 +38,7 @@ $RespuestaApiData = "insert success!";
 if($RespuestaApiData == "insert success!")
 
 { 
-     header("Location: http://localhost/storeIAFront/tables.php");
+     header("Location: http://52.229.9.122/storeIAFront/tables.php");
 
 }
 
@@ -47,7 +47,7 @@ else
 {
 
   
-  header("Location: http://localhost/storeIAFront/index.php");
+  header("Location: http://52.229.9.122/storeIAFront/index.php");
 
 }
 

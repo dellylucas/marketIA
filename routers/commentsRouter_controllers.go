@@ -185,6 +185,14 @@ func init() {
 
 	beego.GlobalControllerRouter["marketIA/controllers:UserController"] = append(beego.GlobalControllerRouter["marketIA/controllers:UserController"],
 		beego.ControllerComments{
+			Method: "GetOne",
+			Router: `/:objectId`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["marketIA/controllers:UserController"] = append(beego.GlobalControllerRouter["marketIA/controllers:UserController"],
+		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:objectId`,
 			AllowHTTPMethods: []string{"put"},

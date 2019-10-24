@@ -26,11 +26,30 @@ func (o *UserController) Get() {
 	o.ServeJSON()
 }
 
+// @Title GetOne
+// @Description Obtiene un usuarios por documento
+// @Param	objectId		path 	string	true		"El documento del objeto a actualizar"
+// @Success 200  models.Usuarios o false
+// @Failure 403 :objectId is empty
+// @router /:objectId [get]
+func (o *UserController) GetOne() {
+	objectId := o.Ctx.Input.Param(":objectId")
+
+	id, err := strconv.Atoi(objectId)
+	ob := models.GetUser(id)
+	if ob.DOCUMENTO != "" && err == nil {
+		o.Data[utils.TypeMessage] = ob
+	} else {
+		o.Data[utils.TypeMessage] = false
+	}
+	o.ServeJSON()
+}
+
 //Post - insert
 // @Title Post
 // @Description crea o inserta usuario
-// @Param	body		body 	models.Usuarios	true		"The object content"
-// @Success 200 models.Usuarios
+// @Param	body		body 	models.Usuarios	true		"El modelo de usuario a insertar"
+// @Success 200 true or error
 // @Failure 403 body is empty
 // @router / [post]
 func (o *UserController) Post() {
@@ -40,43 +59,44 @@ func (o *UserController) Post() {
 	if err != nil {
 		o.Data[utils.TypeMessage] = err
 	} else {
-		o.Data[utils.TypeMessage] = utils.MessageOK
+		o.Data[utils.TypeMessage] = true
 	}
 	o.ServeJSON()
 }
 
 // @Title Update
 // @Description actualiza usuario
-// @Param	objectId		path 	string	true		"The objectid you want to update"
+// @Param	objectId		path 	string	true		"El documento del usuario con sus parametros a actualizar"
 // @Param	body		body 	models.Usuarios	true		"The body"
-// @Success 200 {object} models.Usuarios
+// @Success 200 Boolean  true or false
 // @Failure 403 :objectId is empty
 // @router /:objectId [put]
 func (o *UserController) Put() {
-	objectId := o.Ctx.Input.Param(":objectId")
+	id := o.Ctx.Input.Param(":objectId")
 	var ob models.Usuarios
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
-	id, _ := strconv.Atoi(objectId)
 	err := models.UpdateUser(id, ob)
 	if err != nil {
 		o.Data[utils.TypeMessage] = err.Error()
 	} else {
-		o.Data[utils.TypeMessage] = utils.MessageOK
+		o.Data[utils.TypeMessage] = true
 	}
 	o.ServeJSON()
 }
 
 // @Title Delete
 // @Description Elimina usuario
-// @Param	userID		path 	string	true		"The objectId you want to delete"
-// @Success 200 {string} delete success!
-// @Failure 403 userID is empty
+// @Param	userID		path 	string	true		"El documento del usuario a eliminar"
+// @Success 200 Boolean
 // @router /:userID [Delete]
 func (o *UserController) Delete() {
 	userID := o.Ctx.Input.Param(":userID")
-	id, _ := strconv.Atoi(userID)
-	models.DeleteUser(id)
-	o.Data[utils.TypeMessage] = utils.MessageOK
+	err := models.DeleteUser(userID)
+	if err != nil {
+		o.Data[utils.TypeMessage] = false
+	} else {
+		o.Data[utils.TypeMessage] = true
+	}
 	o.ServeJSON()
 }
 
@@ -84,17 +104,17 @@ func (o *UserController) Delete() {
 // @Title Post
 // @Description realiza la validacion del ingreso de un usuario o tienda
 // @Param	body		body 	models.Usuarios	true		"Contiene el usuario y contraseña digitado"
-// @Success 200 {Boolean} true o false
+// @Success 200 {Boolean} models.Usuarios o false
 // @Failure 403 body is empty
 // @router /login [post]
 func (o *UserController) Login() {
 	var user models.Usuarios
 	json.Unmarshal(o.Ctx.Input.RequestBody, &user)
-	err := models.ValidateLogin(user)
-	if err != nil {
-		o.Data[utils.TypeMessage] = false
+	user = models.ValidateLogin(user)
+	if user.CORREO != "" {
+		o.Data[utils.TypeMessage] = user
 	} else {
-		o.Data[utils.TypeMessage] = true
+		o.Data[utils.TypeMessage] = false
 	}
 	o.ServeJSON()
 }

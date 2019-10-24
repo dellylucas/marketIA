@@ -1,13 +1,12 @@
 package models
 
 import (
-	"fmt"
-	"log"
 	"marketIA/db"
 
 	"github.com/astaxie/beego/orm"
 )
 
+//Usuarios modelo de usuarios
 type Usuarios struct {
 	ID        int    `orm:"column(ID)" json:"id"`
 	NOMBRE    string `orm:"column(NOMBRE)" json:"nombre"`
@@ -16,6 +15,7 @@ type Usuarios struct {
 	DOCUMENTO string `orm:"column(DOCUMENTO)" json:"documento"`
 	CLAVE     string `orm:"column(CLAVE)" json:"clave"`
 	CORREO    string `orm:"column(CORREO)" json:"correo"`
+	ISADMIN   bool   `orm:"column(IS_ADMIN)" json:"admin"`
 }
 
 func init() {
@@ -28,6 +28,14 @@ func InsertUser(user *Usuarios) (err error) {
 	_, err = session.Insert(user)
 	return err
 }
+
+func GetUser(id int) (user Usuarios) {
+	session := db.GetSession()
+
+	session.QueryTable("Usuarios").Filter("DOCUMENTO", id).One(&user)
+	return user
+}
+
 func GetAllUser() (result []Usuarios) {
 	session := db.GetSession()
 	var user []Usuarios
@@ -36,30 +44,33 @@ func GetAllUser() (result []Usuarios) {
 	return user
 }
 
-func DeleteUser(id int) {
+func DeleteUser(id string) (err error) {
 	session := db.GetSession()
-	user := Usuarios{ID: id}
-	if num, err := session.Delete(&user); err != nil {
-		log.Println(num)
-	}
-}
-
-func UpdateUser(id int, user Usuarios) (err error) {
-	session := db.GetSession()
-	userFind := Usuarios{ID: id}
-	if session.Read(&userFind) == nil {
-		user.ID = id
-		if num, err := session.Update(&user); err == nil {
-			fmt.Println(num)
-		}
+	var user Usuarios
+	if err = session.QueryTable("Usuarios").Filter("DOCUMENTO", id).One(&user); err == nil {
+		_, err = session.Delete(&user)
 	}
 	return err
 }
 
-func ValidateLogin(user Usuarios) (err error) {
+func UpdateUser(id string, user Usuarios) (err error) {
 	session := db.GetSession()
-	var pos Usuarios
-	err = session.QueryTable("Usuarios").Filter("CLAVE", user.CLAVE).Filter("CORREO", user.CORREO).One(&pos)
-
+	var userFind Usuarios
+	if err = session.QueryTable("Usuarios").Filter("DOCUMENTO", id).One(&userFind); err == nil {
+		userFind.NOMBRE = user.NOMBRE
+		userFind.APELLIDO = user.APELLIDO
+		userFind.CELULAR = user.CELULAR
+		userFind.CLAVE = user.CLAVE
+		userFind.CORREO = user.CORREO
+		userFind.ISADMIN = user.ISADMIN
+		_, err = session.Update(&userFind)
+	}
 	return err
+}
+
+func ValidateLogin(user Usuarios) (pos Usuarios) {
+	session := db.GetSession()
+	session.QueryTable("Usuarios").Filter("CLAVE", user.CLAVE).Filter("CORREO", user.CORREO).One(&pos)
+
+	return pos
 }
