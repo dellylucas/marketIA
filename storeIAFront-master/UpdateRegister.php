@@ -102,19 +102,26 @@ $Document = $_POST['Documento'];
 
                
                     </tfoot>
-                 
+                </form> 
                 </table>
                 
                 <br>
 
              
               <hr>
-              <br>
-              <input  type="submit" value="Borrar" class="btn btn-primary btn-user btn-block">
-              <br>
-              <input  type="submit" value="Actualizar" class="btn btn-primary btn-user btn-block">
-              </form>
+          
 
+        
+              <a href="UpdateUser.php?".$Document class="btn btn-primary btn-user btn-block">Actualizar</a>
+             
+              <a href="DeleteUser.php?$Document" class="btn btn-primary btn-user btn-block">Borrar</a>
+
+             
+              
+              </form>
+              <br>
+              
+           
             </div>
           </div>
         </div>
