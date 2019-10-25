@@ -102,13 +102,19 @@ $Document = $_POST['Documento'];
 
                
                     </tfoot>
-                  
-
+                 
                 </table>
-               
-              </form>
+                
+                <br>
+
+             
               <hr>
-            
+              <br>
+              <input  type="submit" value="Borrar" class="btn btn-primary btn-user btn-block">
+              <br>
+              <input  type="submit" value="Actualizar" class="btn btn-primary btn-user btn-block">
+              </form>
+
             </div>
           </div>
         </div>
