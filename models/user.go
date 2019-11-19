@@ -18,6 +18,7 @@ type Usuarios struct {
 	CLAVE     string `orm:"column(CLAVE)" json:"clave"`
 	CORREO    string `orm:"column(CORREO)" json:"correo"`
 	ISADMIN   bool   `orm:"column(IS_ADMIN)" json:"admin"`
+	IMAGEN    string `orm:"column(IMAGEN)" json:"imagen"`
 }
 
 func init() {
