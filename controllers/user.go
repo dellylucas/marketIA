@@ -27,17 +27,17 @@ func (o *UserController) Get() {
 }
 
 // @Title GetOne
-// @Description Obtiene un usuarios por Identificador
-// @Param	objectId		path 	string	true		"El Id del objeto a actualizar"
+// @Description Obtiene un usuarios por documento
+// @Param	objectId		path 	string	true		"El documento del objeto a actualizar"
 // @Success 200  models.Usuarios o false
 // @Failure 403 :objectId is empty
 // @router /:objectId [get]
 func (o *UserController) GetOne() {
 	objectId := o.Ctx.Input.Param(":objectId")
 
-	id, _ := strconv.Atoi(objectId)
+	id, err := strconv.Atoi(objectId)
 	ob := models.GetUser(id)
-	if ob.CORREO != "" {
+	if ob.DOCUMENTO != "" && err == nil {
 		o.Data[utils.TypeMessage] = ob
 	} else {
 		o.Data[utils.TypeMessage] = false
@@ -48,8 +48,8 @@ func (o *UserController) GetOne() {
 //Post - insert
 // @Title Post
 // @Description crea o inserta usuario
-// @Param	body		body 	models.Usuarios	true		"El usuario a insertar"
-// @Success 200 models.Usuarios
+// @Param	body		body 	models.Usuarios	true		"El modelo de usuario a insertar"
+// @Success 200 true or error
 // @Failure 403 body is empty
 // @router / [post]
 func (o *UserController) Post() {
@@ -59,43 +59,44 @@ func (o *UserController) Post() {
 	if err != nil {
 		o.Data[utils.TypeMessage] = err
 	} else {
-		o.Data[utils.TypeMessage] = utils.MessageOK
+		o.Data[utils.TypeMessage] = true
 	}
 	o.ServeJSON()
 }
 
 // @Title Update
 // @Description actualiza usuario
-// @Param	objectId		path 	string	true		"El usuario con sus parametros a actualizar"
+// @Param	objectId		path 	string	true		"El documento del usuario con sus parametros a actualizar"
 // @Param	body		body 	models.Usuarios	true		"The body"
-// @Success 200 {object} models.Usuarios
+// @Success 200 Boolean  true or false
 // @Failure 403 :objectId is empty
 // @router /:objectId [put]
 func (o *UserController) Put() {
-	objectId := o.Ctx.Input.Param(":objectId")
+	id := o.Ctx.Input.Param(":objectId")
 	var ob models.Usuarios
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
-	id, _ := strconv.Atoi(objectId)
 	err := models.UpdateUser(id, ob)
 	if err != nil {
 		o.Data[utils.TypeMessage] = err.Error()
 	} else {
-		o.Data[utils.TypeMessage] = utils.MessageOK
+		o.Data[utils.TypeMessage] = true
 	}
 	o.ServeJSON()
 }
 
 // @Title Delete
 // @Description Elimina usuario
-// @Param	userID		path 	string	true		"El Id del usuario a eliminar"
-// @Success 200 {string} delete success!
-// @Failure 403 userID is empty
+// @Param	userID		path 	string	true		"El documento del usuario a eliminar"
+// @Success 200 Boolean
 // @router /:userID [Delete]
 func (o *UserController) Delete() {
 	userID := o.Ctx.Input.Param(":userID")
-	id, _ := strconv.Atoi(userID)
-	models.DeleteUser(id)
-	o.Data[utils.TypeMessage] = utils.MessageOK
+	err := models.DeleteUser(userID)
+	if err != nil {
+		o.Data[utils.TypeMessage] = false
+	} else {
+		o.Data[utils.TypeMessage] = true
+	}
 	o.ServeJSON()
 }
 

@@ -32,14 +32,10 @@ if($RespuestaApi === FALSE){
 $RespuestaApiData = json_decode($RespuestaApi, TRUE);
 
 $DataUser = json_decode($data, true);
-// Print the date from the RespuestaApi
-//echo $RespuestaApiData;
 
-$Rol = $RespuestaApiData['IS_ADMIN'];
+$Rol = ($RespuestaApiData['admin']);
 
-$Rol = "Client";
-
-if($RespuestaApiData == true && $Rol == "Admin")
+if($RespuestaApiData == true && $Rol == 1)
 {
  
 ?>
@@ -112,7 +108,7 @@ if($RespuestaApiData == true && $Rol == "Admin")
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">More options:</h6>
             <a class="collapse-item" href="registerUser.php">Create a new user</a>
-            <a class="collapse-item" href="registerItem.php">Register New Item</a>
+            <a class="collapse-item" href="UpdateRegister.php">Update Item</a>
           </div>
         </div>
       </li>
@@ -373,7 +369,7 @@ if($RespuestaApiData == true && $Rol == "Admin")
 else
 {
 
-  if($RespuestaApiData == "insert success!" && $Rol == "Client")
+  if($RespuestaApiData == true && $Rol == 0)
 { 
 ?>
 
@@ -444,8 +440,8 @@ else
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">More options:</h6>
-            <a class="collapse-item" href="registarUsuaio.php">Meet us</a>
-            <a class="collapse-item" href="registarItem.php">Register New Item</a>
+            <a class="collapse-item" href="about.php">Meet us</a>
+            <a class="collapse-item" href="registerItem.php">Register Item</a>
           </div>
         </div>
       </li>
