@@ -1,3 +1,9 @@
+<?php 
+$Identification = $GET_['document'];
+echo $Identification;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,28 +38,26 @@
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <h1 class="h4 text-gray-900 mb-4">Update an Account!</h1>
               </div>
               <form class="user" method="POST" action="tables.php">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     
                   
-                <div class="form-group">
-                  <input type="number" class="form-control form-control-user" id="exampleInputEmail" placeholder="Identification">
-                </div>
+               
                   
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                  <input type="text" class="form-control form-control-user" id="Nombre" placeholder="First Name">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                    <input type="text" class="form-control form-control-user" id="APellido" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="number" class="form-control form-control-user" id="exampleInputEmail" placeholder="Phone">
+                  <input type="number" class="form-control form-control-user" id="telefono" placeholder="Phone">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                  <input type="email" class="form-control form-control-user" id="Email" placeholder="Email Address">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">

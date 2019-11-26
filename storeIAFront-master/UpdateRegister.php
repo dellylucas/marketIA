@@ -72,7 +72,6 @@ $Document = $_POST['Documento'];
                     {
                         $data = file_get_contents("http://52.229.9.122:8085/v1/user/");
                         $products = json_decode($data, true);
-                       
                         
                         foreach ($products as $product) {?>
                   
@@ -114,7 +113,8 @@ $Document = $_POST['Documento'];
         
               <a href="UpdateUser.php?".$Document class="btn btn-primary btn-user btn-block">Actualizar</a>
              
-              <a href="DeleteUser.php?$Document" class="btn btn-primary btn-user btn-block">Borrar</a>
+              <?php echo '<a href="DeleteUser.php?Document='.$Document.'" class="btn btn-primary btn-user btn-block">Borrar</a>';?>
+
 
              
               
