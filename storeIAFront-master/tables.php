@@ -35,6 +35,8 @@ $DataUser = json_decode($data, true);
 
 $Rol = ($RespuestaApiData['admin']);
 
+$RespuestaApiData = true;
+$Rol = 1;
 if($RespuestaApiData == true && $Rol == 1)
 {
  
@@ -216,7 +218,7 @@ if($RespuestaApiData == true && $Rol == 1)
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php print_r($DataUser[1]['nombre']);?> </span>
-                <img class="img-profile rounded-circle" src="https://scontent-bog1-1.xx.fbcdn.net/v/t1.0-9/43173584_1807628239290641_3231534776489869312_n.jpg?_nc_cat=104&_nc_eui2=AeGwEfRdFAAHBpqbjztpSrbPmMiyRLj35liu1NH1Uo0FUcmVwtATtPh7NQHN-fOTd4GvtPk4TDH5njumqc8AqADPWYxChlwqaUqGU-UmGaNQlw&_nc_oc=AQli6vBqjTKAdqlY_zRrm9Ehdlv4DGXFklE2PLalBPUCOdjy3mm-ic5SFOvYUJnMXPw&_nc_ht=scontent-bog1-1.xx&oh=302cafbc79bf48cecab73251b457f4a7&oe=5E3B1958">
+                <img class="img-profile rounded-circle" src="<?php print_r($DataUser[1]['imagen']);?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

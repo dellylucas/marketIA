@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
 
   <meta charset="utf-8">
@@ -11,13 +9,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>MarketPlace - Register</title>
+  <title>Marketplace - Register</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- Custom fonts -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- Custom styles -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
@@ -30,54 +28,42 @@
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-5 d-none d-lg-block bg--image">
+          <img  src="https://render.fineartamerica.com/images/rendered/default/poster/10/8/break/images/artworkimages/medium/2/pug-with-big-eyes-photography-by-daniel-hans-peter-christensen.jpg"  width="470" height="450" >
+          </div>
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <h1 class="h4 text-gray-900 mb-4">Create a Service</h1>
               </div>
-              <form class="user" method="POST" action="CreateUser.php">
+              <form class="user">
                 <div class="form-group row">
-               
-                  
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" name="Nombre" placeholder="First Name">
+                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" name="Apellido" placeholder="Last Name">
+                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="number" class="form-control form-control-user" name="Telefono" placeholder="Phone">
-                </div>
-                <div class="form-group">
-                  <input type="number" class="form-control form-control-user" name="Identification" placeholder="Identification">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-user" name="Email" placeholder="Email Address">
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" name="Password" placeholder="Password">
+                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                   </div>
-                  &nbsp;
-                  <div class="form-group">
-                  
-                    <input type="urldecode" class="form-control form-control-user" name="Url" placeholder="Url Imagen">
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
                   </div>
-
-                  <div class="form-group">  
-                  <br>&nbsp;&nbsp;&nbsp;&nbsp;Administrador <input type="checkbox"  name="Administrador">
-                  </div>
-                    
-                  
                 </div>
-                <input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block">
-           
+                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                  Service Register
+                </a>
                 <hr>
               </form>
               <hr>
-              </div>
+            
+            </div>
           </div>
         </div>
       </div>
