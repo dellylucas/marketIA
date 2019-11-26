@@ -1,6 +1,7 @@
 package test
 
 import (
+	"marketIA/models"
 	_ "marketIA/routers"
 	"net/http"
 	"net/http/httptest"
@@ -20,20 +21,8 @@ func init() {
 
 // TestGetAll obtiene todos los usuarios //go test tests/default_test.go -v
 func TestGetAll(t *testing.T) {
-	r, _ := http.NewRequest("GET", "/v1/user", nil)
-	w := httptest.NewRecorder()
-	beego.BeeApp.Handlers.ServeHTTP(w, r)
-
-	beego.Trace("testing", "TestGetAll", "Code[%d]\n%s", w.Code, w.Body.String())
-
-	Convey("Subject: Test Station Endpoint\n", t, func() {
-		Convey("Status Code Should Be 200", func() {
-			So(w.Code, ShouldEqual, 200)
-		})
-		Convey("The Result Should Not Be Empty", func() {
-			So(w.Body.Len(), ShouldBeGreaterThan, 0)
-		})
-	})
+	ob := models.GetAllUser()
+	beego.Trace("testing", "TestGetAll", "Code %s", ob)
 }
 
 // TestGetOne obtiene un usuario por id
