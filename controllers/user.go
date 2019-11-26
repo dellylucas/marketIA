@@ -70,7 +70,7 @@ func (o *UserController) Post() {
 // @Param	body		body 	models.Usuarios	true		"The body"
 // @Success 200 Boolean  true or false
 // @Failure 403 :objectId is empty
-// @router /upd/:objectId [post]
+// @router /:objectId [put]
 func (o *UserController) Put() {
 	id := o.Ctx.Input.Param(":objectId")
 	var ob models.Usuarios
