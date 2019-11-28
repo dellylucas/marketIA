@@ -35,12 +35,9 @@ $RespuestaApiData = json_decode($RespuestaApi, TRUE);
 
 $DataUser = json_decode($RespuestaApi, TRUE);
 
-print_r($DataUser['imagen']);
 
 $Rol = ($RespuestaApiData['admin']);
 
-$RespuestaApiData = true;
-$Rol = 1;
 if($RespuestaApiData == true && $Rol == 1)
 {
  
