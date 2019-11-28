@@ -1,7 +1,8 @@
 <?php 
-$Identification = $GET_['document'];
-echo $Identification;
 
+$Identificador = $_GET["Document"];
+
+echo "identificacion N°: ". $Identificador;
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ echo $Identification;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>MarketPlace - Register</title>
+  <title>MarketPlace - Update</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,36 +41,44 @@ echo $Identification;
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Update an Account!</h1>
               </div>
-              <form class="user" method="POST" action="tables.php">
+              <form class="user" method="POST" action="UpdateU.php">
                 <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    
-                  
                
                   
-                  <input type="text" class="form-control form-control-user" id="Nombre" placeholder="First Name">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" name="Nombre" placeholder="First Name">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="APellido" placeholder="Last Name">
+                    <input type="text" class="form-control form-control-user" name="Apellido" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="number" class="form-control form-control-user" id="telefono" placeholder="Phone">
+                  <input type="number" class="form-control form-control-user" name="Telefono" placeholder="Phone">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="Email" placeholder="Email Address">
+                  <input hidden type="text" class="form-control form-control-user" name="Identification" value="<?php echo $Identificador;?>">
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-user" name="Email" placeholder="Email Address">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    <input type="password" class="form-control form-control-user" name="Password" placeholder="Password">
                   </div>
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                  &nbsp;
+                  <div class="form-group">
+                  
+                    <input type="urldecode" class="form-control form-control-user" name="Url" placeholder="Url Imagen">
                   </div>
+
+                  <div class="form-group">  
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;Administrador <input type="checkbox"  name="Administrador">
+                  </div>
+                    
+                  
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  Register Account
-                </a>
+                <input type="submit" value="Update" class="btn btn-primary btn-user btn-block">
+           
                 <hr>
               </form>
               <hr>
@@ -80,7 +89,6 @@ echo $Identification;
     </div>
 
   </div>
-
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

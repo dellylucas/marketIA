@@ -1,4 +1,6 @@
- <?php
+<?php
+
+
 $usuario = $_POST['Usuario'];
 $contraseña = $_POST['Contraseña'];
 
@@ -31,7 +33,9 @@ if($RespuestaApi === FALSE){
 // Decode the RespuestaApi
 $RespuestaApiData = json_decode($RespuestaApi, TRUE);
 
-$DataUser = json_decode($data, true);
+$DataUser = json_decode($RespuestaApi, TRUE);
+
+print_r($DataUser['imagen']);
 
 $Rol = ($RespuestaApiData['admin']);
 
@@ -217,8 +221,8 @@ if($RespuestaApiData == true && $Rol == 1)
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php print_r($DataUser[1]['nombre']);?> </span>
-                <img class="img-profile rounded-circle" src="<?php print_r($DataUser[1]['imagen']);?>">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php print_r($DataUser['nombre']);?> </span>
+                <img class="img-profile rounded-circle" src="<?php print_r($DataUser['imagen']);?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -264,7 +268,7 @@ if($RespuestaApiData == true && $Rol == 1)
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Cedula</th>
+                      <th>ID</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Celular</th>
