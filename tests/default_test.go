@@ -53,6 +53,14 @@ func TestGetOne(t *testing.T) {
 
 }
 
+// TestDeleteUser elimina un usuario por id
+func TestDeleteUser(t *testing.T) {
+	var idUser = "123"
+	ob := models.DeleteUser(idUser)
+	beego.Trace("testing", "TestDeleteUser", "Code %s", ob)
+
+}
+
 // TestLogin valida login
 func TestLogin(t *testing.T) {
 	var userLog models.Usuarios
@@ -69,5 +77,45 @@ func TestGetStores(t *testing.T) {
 
 	ob := models.GetAllStore()
 	beego.Trace("testing", "TestGetStores", "Code %s", ob)
+
+}
+
+// TestInsertCat inserta categoria
+func TestInsertCat(t *testing.T) {
+	var cate models.Categorias
+
+	cate.ID = 3
+	cate.NOMBRE = "Seguridad"
+
+	models.InsertCategories(&cate)
+	beego.Trace("testing", "TestInsertCat", "Code %s", "ok")
+
+}
+
+// TestGetAllCat obtene las categorias
+func TestGetAllCat(t *testing.T) {
+
+	ob := models.GetAllCategories()
+	for _, cat := range ob {
+		beego.Trace("testing", "TestGetAllCat", "Code %s", cat)
+	}
+
+}
+
+// TestGetAllPayMethods obtene todos los metodo de pago
+func TestGetAllPayMethods(t *testing.T) {
+
+	ob := models.GetAllPayMethods()
+	for _, met := range ob {
+		beego.Trace("testing", "TestGetAllPayMethods", "Code %s", met)
+	}
+
+}
+
+// TestDeletePayMethods elimina un metodo de pago
+func TestDeletePayMethods(t *testing.T) {
+	var idUser = 123
+	models.DeletePayMethods(idUser)
+	beego.Trace("testing", "TestDeletePayMethods", "Code %s", "ok")
 
 }
