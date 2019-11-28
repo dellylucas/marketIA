@@ -28,6 +28,8 @@ $data = file_get_contents("http://52.229.9.122:8085/v1/user");
 // Check for errors
 if($RespuestaApi === FALSE){
     die('Error');
+    header("http://52.229.9.122/index.php");
+
 }
 
 // Decode the RespuestaApi
@@ -37,6 +39,7 @@ $DataUser = json_decode($RespuestaApi, TRUE);
 
 
 $Rol = ($RespuestaApiData['admin']);
+$Rol = 0;
 
 if($RespuestaApiData == true && $Rol == 1)
 {
@@ -703,7 +706,7 @@ else
 }
 else{
   
-  header("http://52.229.9.122/index.php");
+  header("http://52.229.9.122/index.php");            
 
 }
 }
