@@ -39,7 +39,6 @@ $DataUser = json_decode($RespuestaApi, TRUE);
 
 
 $Rol = ($RespuestaApiData['admin']);
-$Rol = 0;
 
 if($RespuestaApiData == true && $Rol == 1)
 {
