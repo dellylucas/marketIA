@@ -14,6 +14,7 @@ type Servicio struct {
 	NOMBRE      string `orm:"column(NOMBRE)" json:"nombre"`
 	PRECIO      int    `orm:"column(PRECIO)" json:"precio"`
 	DESCRIPCION string `orm:"column(DESCRIPCION)" json:"descripcion"`
+	IMAGEN string `orm:"column(IMAGEN)" json:"imagen"`
 }
 
 func init() {
