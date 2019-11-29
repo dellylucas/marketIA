@@ -7,12 +7,10 @@ $Identification = $_POST['Identification'];
 $Clave = $_POST['Password'];
 $Email = $_POST['Email'];
 $Imagen = $_POST['Url'];
-$Admin = empty($_POST['Administrador']=0);
+$Admin = empty($_POST['Administrador']);
 
-echo "Admin: ".$Admin;
-// The data to send to the API
-$postData = array(
-  
+
+$postData = array(  
   "nombre" => $Nombre ,
   "apellido" => $Apellido  ,
   "celular" => $Telefono ,
@@ -23,24 +21,23 @@ $postData = array(
   "imagen" => $Imagen
    
 );
-   
+
+echo "La identificacion es".$Identification;
 
 // Create the context for the request
 $context = stream_context_create(array(
-    'http' => array(
-        'method' => 'POST',
-        'header' => "Content-Type: application/json\r\n",
-        'content' => json_encode($postData)
-    )
+  'http' => array(
+      'method' => 'PUT',
+      'header' => "Content-Type: application/json\r\n",
+      'content' => json_encode($postData)
+      )
 ));
 
 // Send the request
-$RespuestaApi = file_get_contents('http://52.229.9.122:8085/v1/user/', FALSE, $context);
+$RespuestaApi = file_get_contents('http://52.229.9.122:8085/v1/user/'.$Identification, FALSE , $context);
+
+
+
 echo $RespuestaApi;
 
-
 ?>
-
-
-
-

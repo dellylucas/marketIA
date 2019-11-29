@@ -1,4 +1,6 @@
- <?php
+<?php
+
+
 $usuario = $_POST['Usuario'];
 $contraseña = $_POST['Contraseña'];
 
@@ -26,17 +28,18 @@ $data = file_get_contents("http://52.229.9.122:8085/v1/user");
 // Check for errors
 if($RespuestaApi === FALSE){
     die('Error');
+    header("http://52.229.9.122/index.php");
+
 }
 
 // Decode the RespuestaApi
 $RespuestaApiData = json_decode($RespuestaApi, TRUE);
 
-$DataUser = json_decode($data, true);
+$DataUser = json_decode($RespuestaApi, TRUE);
+
 
 $Rol = ($RespuestaApiData['admin']);
 
-$RespuestaApiData = true;
-$Rol = 1;
 if($RespuestaApiData == true && $Rol == 1)
 {
  
@@ -217,8 +220,8 @@ if($RespuestaApiData == true && $Rol == 1)
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php print_r($DataUser[1]['nombre']);?> </span>
-                <img class="img-profile rounded-circle" src="<?php print_r($DataUser[1]['imagen']);?>">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php print_r($DataUser['nombre']);?> </span>
+                <img class="img-profile rounded-circle" src="<?php print_r($DataUser['imagen']);?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -264,7 +267,7 @@ if($RespuestaApiData == true && $Rol == 1)
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Cedula</th>
+                      <th>ID</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Celular</th>
@@ -702,7 +705,7 @@ else
 }
 else{
   
-  header("http://52.229.9.122/index.php");
+  header("http://52.229.9.122/index.php");            
 
 }
 }

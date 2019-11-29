@@ -1,9 +1,6 @@
 <?php
 
-$Document = $_POST['Documento'];
-
-
-
+  $Document = isset( $_POST['Documento'] )? $_POST['Documento']: false;
 
 ?>
 
@@ -111,8 +108,7 @@ $Document = $_POST['Documento'];
           
 
         
-              <a href="UpdateUser.php?".$Document class="btn btn-primary btn-user btn-block">Actualizar</a>
-             
+              <?php echo '<a href="UpdateUser.php?Document='.$Document.'" class="btn btn-primary btn-user btn-block">Actualizar</a>';?>
               <?php echo '<a href="DeleteUser.php?Document='.$Document.'" class="btn btn-primary btn-user btn-block">Borrar</a>';?>
 
 
